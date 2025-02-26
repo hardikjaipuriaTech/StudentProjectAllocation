@@ -1,0 +1,20 @@
+<app-header></app-header>
+<div *ngIf="studentAssignedProjectList.length" class="container">
+  <h4 class="section-title">Projects Assigned to You</h4>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Student Email</th>
+      <th>Project Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of studentAssignedProjectList">
+      <td>{{ item?.name }}</td>
+      <td>{{ item?.email }}</td>
+      <td>{{ item?.projectAssign?.title }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,80 @@
+<app-header></app-header>
+<div class="page-container">
+  <section class="manage-projects-section">
+    <div class="section-header">
+      <h1>Manage Projects</h1>
+    </div>
+    <div class="project-list-container">
+      <!--<button class="btn btn-primary add-project-button" (click)="openProjectModal('add')">Add Project</button>-->
+      <table class="project-table">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Project Name</th>
+          <th>Description</th>
+          <th>Justification</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let project of projects; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ project.title }}</td>
+          <td>{{ project.description }}</td>
+          <td>{{ project.justification}}</td>
+          <td>
+            <button class="btn btn-primary" (click)="openProjectModal('edit', project)">Edit</button>
+            <!--<button class="btn btn-danger ms-2" (click)="deleteProject(project)">Delete</button>-->
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<!-- Project Modal -->
+<div class="modal" [ngClass]="{'active': isModalActive}">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>{{ modalType === 'add' ? 'Add Project' : 'Edit Project' }}</h3>
+      <button class="btn-close" (click)="closeProjectModal()"></button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="saveProject()" class="project-form">
+        <div class="form-group">
+          <label for="projectTitle">Project Title</label>
+          <input type="text" id="projectTitle" class="form-control" [(ngModel)]="project.title" required/>
+        </div>
+        <div class="form-group">
+          <label for="projectDescription">Project Description</label>
+          <textarea id="projectDescription" class="form-control" [(ngModel)]="project.description" required
+                    rows="4"></textarea>
+        </div>
+        <button type="submit" class="submit-button">{{ modalType === 'add' ? 'Add' : 'Save' }}</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this project?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="confirmDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Project Confirmation modal-->

@@ -1,0 +1,25 @@
+<div class="deadline-management m-5">
+  <h4>Manage Deadlines</h4>
+  <form [formGroup]="deadlineForm" (ngSubmit)="submitDeadline()">
+    <div class="form-group">
+      <label for="type">Type</label>
+      <select id="type" formControlName="dateType">
+        <option value="project_proposal">Project Proposal</option>
+        <option value="preference_list">Preference List</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="date">Deadline Date</label>
+      <input type="date" id="date" formControlName="deadlineDate">
+    </div>
+    <button type="submit">Create Deadline</button>
+  </form>
+
+  <h5>Existing Deadlines</h5>
+   <ul>
+      <li *ngFor="let deadline of deadlines">
+        {{ deadline?.type }} - {{ deadline?.date | date }}
+      </li>
+    </ul>
+</div>
+

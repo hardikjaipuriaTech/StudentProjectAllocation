@@ -1,0 +1,42 @@
+<div class="header d-flex justify-content-between position-sticky p-3 mb-4">
+  <div class="left-side d-flex align-items-center">
+    <button *ngIf="isAdmin" (click)="openMenu(content)" class="menu-button p-cursor">
+      <mat-icon class="menu-icon">menu</mat-icon>
+    </button>
+    <h4 class="welcome-message">Welcome {{ headerData.name || "Administrator" }}</h4>
+  </div>
+  <div class="right-side">
+    <button type="button" *ngIf="isUserStudent || isUserSupervisor" routerLink="/project-list-view" class="btn btn-link text-decoration-none me-3">Home</button>
+    <button type="button" *ngIf="isUserStudent || isUserSupervisor" routerLink="/project-proposal" class="btn btn-link text-decoration-none me-3">Project Proposal</button>
+    <button type="button" *ngIf="isUserSupervisor" routerLink="/view-allocation" class="btn btn-link text-decoration-none me-3">View Allocation</button>
+    <button type="button" *ngIf="isUserStudent" routerLink="/my-preferences" class="btn btn-link text-decoration-none me-3">Project Preference Management</button>
+    <button type="button" *ngIf="isUserStudent" routerLink="/view-allocation-student" class="btn btn-link text-decoration-none me-3">View Allocation</button>
+    <button type="button" *ngIf="isUserStudent" routerLink="/schedule-meeting-slots" class="btn btn-link text-decoration-none me-3">Schedule Meeting</button>
+    <button type="button" *ngIf="isUserSupervisor" routerLink="/meeting-slots" class="btn btn-link text-decoration-none me-3">Schedule Meeting Slots</button>
+    <button type="button" (click)="logout()" class="btn btn-link text-decoration-none">Logout</button>
+  </div>
+</div>
+
+<ng-template #content let-offcanvas>
+  <div class="offcanvas-header">
+    <h4 class="offcanvas-title">Menu</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="menu-list">
+      <li><a routerLink="/project-list-view">Home</a></li>
+        <li *ngIf="isAdmin"><a routerLink="/project-allocation">Project Allocation</a></li>
+        <!--<li *ngIf="isAdmin"><a routerLink="/manage-students">Manage Students</a></li>-->
+        <li *ngIf="isAdmin"><a routerLink="/manage-supervisors">Manage Supervisors</a></li>
+        <li *ngIf="isAdmin"><a routerLink="/manage-projects">Manage Project Information</a></li>
+        <li *ngIf="isAdmin"><a routerLink="/project-approval">Project Approval</a></li>
+        <!--<li *ngIf="isAdmin"><a routerLink="/manage-projects">Bulk Upload</a></li>-->
+      </ul>
+    </div>
+</ng-template>
+
+<!--
+<footer>
+  <p>&copy; 2023 University of Strathclyde. All rights reserved.</p>
+</footer>
+-->

@@ -1,0 +1,120 @@
+<div class="dashboard">
+  <app-header></app-header>
+
+  <!-- PROJECT LIST VIEW -->
+  <div *ngIf="projectList.length > 0"
+       class="container">
+
+    <!-- Information Section -->
+    <section class="info-section">
+      <mat-card class="mb-4">
+        <mat-card-content>
+          <p>
+            <mat-icon class="info-icon" color="primary">info</mat-icon>
+            Welcome to the list of available projects for student selection. This platform enables you to explore a
+            diverse array of projects. Effortlessly search for projects by their names and conveniently sort them
+            according to various criteria. It is essential to note that the deadline to propose your own project is
+            September 15, 2023. To ensure a smooth process, kindly submit your project preferences by September 30,
+            2023.
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </section>
+
+    <!-- Search and Sort Options -->
+    <section class="search-and-sort-section">
+      <div class="row align-items-center mb-4">
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput type="text" placeholder="Search by project title" [(ngModel)]="searchQuery">
+          </mat-form-field>
+        </div>
+        <div class="d-flex align-items-end justify-content-end col-md-3 full-width">
+          <label for="sortSelect" class="me-2">Sort by:</label>
+          <select id="sortSelect" class="form-control" [(ngModel)]="sortOrder">
+            <option value="title">Title</option>
+            <option value="supervisor">Supervisor</option>
+            <option value="date">Date Approved</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="view-project-list">
+
+      <div class="row align-items-center mb-4">
+        <div class="col-md-12">
+          <h3 class="section-title mb-0">Project List</h3>
+        </div>
+      </div>
+
+      <div class="table-header">
+        <div class="row">
+          <div class="col-md-5"><h5>Title and Description</h5></div>
+          <div class="col-md-3"><h5>Project Supervisor</h5></div>
+          <div class="col-md-2"><h5>Approved on</h5></div>
+          <div *ngIf="userType === 'student'" class="col-md-2"><h5>Shortlist project</h5></div>
+        </div>
+      </div>
+      <div class="row project-list">
+        <div *ngIf="filteredProjects.length > 0; else noProjectsMessage" class="col-md-12">
+          <div class="card-deck">
+            <mat-card *ngFor="let project of filteredProjects | orderBy: sortOrder; let i = index"
+                      [ngClass]="{ 'card': true, 'mb-3': true, 'shortlisted-card': project.isSelected }"
+                      class="card mb-3">
+              <mat-card-content class="card-body">
+                <div class="row">
+                  <div class="col-md-5">
+                    <h5 class="card-text"> {{ project.title }}</h5>
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Project Description for {{project.title }}
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <div class="project-description">
+                        <p class="card-text">{{ project?.description }}</p>
+                      </div>
+                    </mat-expansion-panel>
+                  </div>
+                  <div class="col-md-3">
+                    <p class="card-text">{{ project?.supervisor.email }}</p>
+                  </div>
+                  <div class="col-md-2">
+                    <p class="card-text">{{ project?.approvedDate | date:'dd-MM-yyyy'  }}</p>
+                  </div>
+                  <div *ngIf="userType === 'student'" class="col-md-2">
+                    <button mat-icon-button (click)="shortlistProject(project)" color="red">
+                      <mat-icon class="minus-icon" *ngIf="project.isSelected">favorite</mat-icon>
+                      <mat-icon class="plus-icon" *ngIf="!project.isSelected">favorite_border</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </mat-card-content>
+              <div class="row">
+
+              </div>
+
+            </mat-card>
+          </div>
+          {{dataSource.data.length}}
+          {{pageSize}}
+          {{currentPage}}
+          <mat-paginator
+            #paginator
+            [length]="dataSource.data.length"
+            [pageSize]="pageSize"
+            [pageIndex]="currentPage"
+            (page)="onPageChange($event)"
+          ></mat-paginator>
+        </div>
+
+      </div>
+    </section>
+
+    <ng-template #noProjectsMessage>
+      <p class="text-center">No projects available.</p>
+    </ng-template>
+  </div>
+</div>

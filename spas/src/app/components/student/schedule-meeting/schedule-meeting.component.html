@@ -1,0 +1,33 @@
+<app-header></app-header>
+<div class="container">
+  <h3>Available Meeting Slots:</h3>
+  <ul>
+    <li *ngFor="let slot of availableSlots">
+      <label>
+        <input
+          type="radio"
+          name="selectedSlot"
+          [value]="slot"
+          (change)="onSlotSelected(slot)"
+          [disabled]="slot.status === 'slot booked'"
+        />
+        {{ slot.date | date }} - {{ slot.startTime }} to {{ slot.endTime }}
+      </label>
+    </li>
+  </ul>
+
+  <button
+    type="button"
+    class="btn btn-primary"
+    [disabled]="!selectedSlot"
+    (click)="scheduleAppointment()"
+  >
+    Schedule Appointment
+  </button>
+
+  <div *ngIf="selectedSlot">
+    <p>You have selected the following slot:</p>
+    <p>Date: {{ selectedSlot.date | date }}</p>
+    <p>Time: {{ selectedSlot.startTime }} to {{ selectedSlot.endTime }}</p>
+  </div>
+</div>

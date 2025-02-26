@@ -1,0 +1,62 @@
+.header {
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 10px;
+}
+
+.menu-icon {
+  font-size: 1.5rem;
+}
+
+.welcome-message {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.right-side {
+  display: flex;
+  align-items: center;
+}
+
+.btn-link {
+  color: #007bff;
+  text-decoration: none;
+  padding: 0;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+.offcanvas-title {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.menu-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-list li {
+  margin-bottom: 10px;
+}
+
+.menu-list a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.menu-list a:hover {
+  color: #007bff;
+}

@@ -1,0 +1,40 @@
+<div class="dashboard">
+    <app-header></app-header>
+
+    <div class="container">
+        <h3 *ngIf="!projectStatus" class="section-title mb-4">Shortlisted Project Preferences:</h3>
+        <h3 *ngIf="projectStatus" class="section-title mb-4">Submitted Project Preferences:</h3>
+        <div *ngIf="infoMessage" class="alert alert-success" role="alert">
+            {{infoMessage}}
+        </div>
+      <div *ngIf="hasDuplicatePreference" class="alert alert-danger mt-3" role="alert">
+        Duplicate preference numbers found. Please ensure all preferences are unique.
+      </div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+
+                <tr>
+                    <th scope="col">Project Name</th>
+                    <th scope="col">Description</th>
+                    <th *ngIf="!projectStatus" scope="col">Preference</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let project of projectList;let i = index">
+                    <td>{{project.title}}</td>
+                    <td>{{project.description}}</td>
+                    <td *ngIf="!projectStatus">
+                      <input type="number" min="1" max="10"
+                                                      [(ngModel)]="userPreferences[i].preferenceNumber"/>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <button (click)="submitChoice()" *ngIf="!projectStatus" class="btn btn-primary mt-4 text-center">Submit
+            </button>
+        </div>
+    </div>
+</div>

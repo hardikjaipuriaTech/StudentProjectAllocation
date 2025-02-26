@@ -1,0 +1,105 @@
+/* Container */
+.container {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 1200px;
+}
+
+/* Section Titles */
+.section-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Project Cards */
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* Buttons */
+.btn {
+  cursor: pointer;
+}
+
+.btn-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+/* Icons */
+.favIcon {
+  color: #f39c12; /* Orange color */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.favIcon:hover {
+  color: #e67e22;
+}
+
+/* Paginator */
+.mat-paginator {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Information Section */
+.info-section {
+  margin-bottom: 20px;
+}
+
+.info-icon {
+  font-size: 1.5rem;
+  font-weight: bold;
+  vertical-align: middle;
+  color: #007bff; /* Blue color */
+}
+
+/* Search and Sort Section */
+.search-and-sort-section {
+  margin-bottom: 20px;
+}
+
+/* Table Header */
+.table-header {
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+/* Hover Effects */
+.plus-icon,
+.minus-icon {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Shortlisted Card Style */
+.shortlisted-card {
+  border: 2px solid #2ecc71; /* Green color */
+}

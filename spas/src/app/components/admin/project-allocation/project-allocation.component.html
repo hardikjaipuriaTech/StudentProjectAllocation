@@ -1,0 +1,65 @@
+<div class="project-allocation">
+  <app-header></app-header>
+
+  <div class="container mt-4">
+    <div *ngIf="alertMessage" class="alert alert-success" role="alert">
+      {{ alertMessage }}
+    </div>
+    <div class="card">
+      <div class="card-header">
+        Project Allocation
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <!-- Place project allocation controls here -->
+        </div>
+        <button (click)="autoAssignProjects()" class="btn btn-primary mt-3">Run Allocation</button>
+        <hr />
+
+        <h3>Allocation Status</h3>
+        <div *ngIf="allocationStatus === 'running'">
+          <p>Allocation is in progress...</p>
+        </div>
+        <div *ngIf="allocationStatus === 'complete'">
+          <p>Allocation is complete. Students have been assigned projects.</p>
+        </div>
+        <div *ngIf="allocationStatus === 'idle'">
+          <p>No allocation has been run yet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+      <h2 class="m-4">Project Allocations</h2>
+
+      <mat-table [dataSource]="projectAllocations" class="mat-elevation-z8">
+        <!-- Student Name Column -->
+        <ng-container matColumnDef="studentName">
+          <mat-header-cell *matHeaderCellDef> Student Name </mat-header-cell>
+          <mat-cell *matCellDef="let allocation"> {{ allocation.name }} </mat-cell>
+        </ng-container>
+
+        <!-- Project Title Column -->
+        <ng-container matColumnDef="projectTitle">
+          <mat-header-cell *matHeaderCellDef> Project Title </mat-header-cell>
+          <mat-cell *matCellDef="let allocation"> {{ allocation.projectAssign.title }} </mat-cell>
+        </ng-container>
+
+        <!-- Supervisor Column -->
+        <ng-container matColumnDef="supervisor">
+          <mat-header-cell *matHeaderCellDef> Supervisor </mat-header-cell>
+          <mat-cell *matCellDef="let allocation"> {{ allocation.projectAssign?.projectAssign | json }} </mat-cell>
+        </ng-container>
+
+        <!-- Allocated Date Column -->
+        <ng-container matColumnDef="allocatedDate">
+          <mat-header-cell *matHeaderCellDef> Allocated Date </mat-header-cell>
+          <mat-cell *matCellDef="let allocation"> {{ allocation.allocatedDate | date }} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+
+</div>

@@ -1,0 +1,67 @@
+<div class="container">
+    <div style="height: 100vh;" class="row justify-content-center align-items-center">
+        <h1 class="text-center">Student Project Allocation System</h1>
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h4 class="text-center"><mat-icon class="signup-icon">person_add</mat-icon> User Signup</h4>
+
+                <div *ngIf="signupData.errorMessage">
+                  <div class="alert alert-danger" role="alert">
+                    {{signupData.errorMessage}}
+                  </div>
+                </div>
+                <div *ngIf="signupData.successMessage">
+                  <div class="alert alert-success" role="alert">
+                    {{signupData.successMessage}}
+                  </div>
+                </div>
+
+                <form #signupForm="ngForm" (ngSubmit)="signup()">
+                    <div class="form-group mb-3">
+                        <label for="name"><mat-icon class="input-icon">person</mat-icon>Name<mat-icon class="mandatory-icon">*</mat-icon></label>
+                        <input type="text" class="form-control" [(ngModel)]="signupData.name" name="name"
+                               id="name" required="true"
+                               placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="exampleInputEmail"> <mat-icon class="input-icon">email</mat-icon>
+                          Email address<mat-icon class="mandatory-icon">*</mat-icon></label>
+                        <input type="email" class="form-control" [(ngModel)]="signupData.email" name="email"
+                               id="exampleInputEmail" aria-describedby="emailHelp" required="true"
+                               placeholder="Enter your email">
+                    </div>
+                    <div class="form-group  mb-3">
+                        <label for="exampleInputPassword"><mat-icon class="input-icon">lock</mat-icon>
+                          Password<mat-icon class="mandatory-icon">*</mat-icon></label>
+                        <input type="password" class="form-control" [(ngModel)]="signupData.password" name="password"
+                               required="true" id="exampleInputPassword" placeholder="Enter a password">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label>User Type</label>
+                        <div class="ms-4 form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="studentRadio"
+                                   [(ngModel)]="signupData.userType" name="userType" value="student">
+                            <label class="form-check-label" for="studentRadio">Student</label>
+                        </div>
+                        <div class=" ms-4 form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="supervisorRadio"
+                                   [(ngModel)]="signupData.userType" name="userType" value="supervisor">
+                            <label class="form-check-label" for="supervisorRadio">Supervisor</label>
+                        </div>
+
+                    </div>
+
+                    <div *ngIf="signupData.userType === 'student'" class="form-group mb-3">
+                        <label for="rollno">Registration number<mat-icon class="mandatory-icon">*</mat-icon></label>
+                        <input type="text" class="form-control" id="rollno"
+                               [(ngModel)]="signupData.rollno" name="rollno"
+                               placeholder="Enter student registration number">
+                    </div>
+                    <p class="login-link mt-3 text-center"><a routerLink="/">Already have an account?</a> to sign in.</p>
+                    <button type="submit" class="btn btn-primary btn-block"><mat-icon class="button-icon">send</mat-icon> Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

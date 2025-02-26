@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <h1 class="text-center mb-5">Student Project Allocation System</h1>
+    <mat-card class="login-container">
+      <mat-card-header class="justify-content-center">
+        <mat-card-title class=" text-center login-title">
+          <mat-icon class="login-icon">account_circle</mat-icon>
+          User Login
+        </mat-card-title>
+      </mat-card-header>
+      <div *ngIf="loginData.errorMessage" class="alert alert-danger" role="alert">
+        {{ loginData.errorMessage }}
+      </div>
+      <form #loginForm="ngForm" (ngSubmit)="login()">
+        <div class="form-group">
+          <label for="email">
+            <mat-icon class="input-icon">email</mat-icon>
+            Email address<mat-icon class="mandatory-icon">*</mat-icon></label>
+          <input matInput
+                 type="email"
+                 class="form-control"
+                 [(ngModel)]="loginData.email"
+                 name="email"
+                 id="email"
+                 placeholder="Enter email"
+                 required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">
+            <mat-icon class="input-icon">lock</mat-icon>
+            Password<mat-icon class="mandatory-icon">*</mat-icon></label>
+          <input matInput
+                 type="password"
+                 [(ngModel)]="loginData.password"
+                 name="password"
+                 class="form-control"
+                 id="password"
+                 placeholder="Password"
+                 required
+          />
+        </div>
+        <p class="signup-link">Don't have an account? <a routerLink="/signup">Sign up</a></p>
+        <button mat-raised-button color="primary" type="submit" class="btn btn-primary btn-block">
+          <mat-icon class="button-icon">login</mat-icon>
+          Login
+        </button>
+
+      </form>
+    </mat-card>
+  </div>
+</div>
